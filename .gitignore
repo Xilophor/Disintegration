@@ -1,0 +1,17 @@
+# Ignore all
+/*
+
+# Add files & folders
+!.gitignore
+!README.md
+!LICENSE
+!Disintegration.sln
+!Disintegration
+!assets
+!.github
+!.config
+
+# Ignore directories
+[Bb]in
+[Oo]bj
+**.user
