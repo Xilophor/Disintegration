@@ -7,6 +7,8 @@ using UnityEngine;
 
 namespace Disintegration;
 
+// BepInDependency Attribute to let StaticNetcodeLib know to search within this mod.
+[BepInDependency(StaticNetcodeLib.StaticNetcodeLib.Guid)]
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 public class Disintegration : BaseUnityPlugin
 {
@@ -17,7 +19,7 @@ public class Disintegration : BaseUnityPlugin
     private static readonly Harmony RouletteHarmony = new($"{MyPluginInfo.PLUGIN_GUID}.Roulette");
     
     private static Harmony? _harmony;
-    private static GameObject _rouletteWheelObject = null!;
+    internal static GameObject RouletteWheelObject = null!;
     private static readonly HarmonyMethod PrefixMethod = new(typeof(Disintegration), nameof(Prefix));
 
     private void Awake()
@@ -25,11 +27,11 @@ public class Disintegration : BaseUnityPlugin
         Logger = base.Logger;
         Instance = this;
 
-        _rouletteWheelObject = new GameObject("RouletteWheel")
+        RouletteWheelObject = new GameObject("RouletteWheel")
             { hideFlags = HideFlags.HideAndDontSave };
-        DontDestroyOnLoad(_rouletteWheelObject);
-        _rouletteWheelObject.SetActive(false);
-        _rouletteWheelObject.AddComponent<RouletteWheel>();
+        DontDestroyOnLoad(RouletteWheelObject);
+        RouletteWheelObject.SetActive(false);
+        RouletteWheelObject.AddComponent<RouletteWheel>();
 
         Patch();
 
@@ -65,11 +67,11 @@ public class Disintegration : BaseUnityPlugin
         }
     }
 
-    internal static void EnableRoulette() => _rouletteWheelObject.SetActive(true);
+    internal static void EnableRoulette() => RouletteWheelObject.SetActive(true);
 
     internal static void DisableRoulette()
     {
-        _rouletteWheelObject.SetActive(false);
+        RouletteWheelObject.SetActive(false);
         RouletteHarmony.UnpatchSelf();
     }
 

@@ -18,7 +18,7 @@ internal class GameNetworkManagerPatches
     private static void StartClient()
     {
         Disintegration.EnableRoulette();
-        NetworkMessageHandler.PingServer();
+        RouletteWheel.PingServerRpc();
     }
 
     [HarmonyPatch(typeof(GameNetworkManager), nameof(GameNetworkManager.Disconnect))]

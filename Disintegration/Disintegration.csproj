@@ -35,6 +35,7 @@
         <PackageReference Include="LethalCompany.GameLibs.Steam" Version="49.0.0-*" Publicize="true" PrivateAssets="all"/>
         <PackageReference Include="UnityEngine.Modules" Version="2022.3.9" IncludeAssets="compile" PrivateAssets="all"/>
         <PackageReference Include="MinVer" Version="4.*" PrivateAssets="all" />
+        <PackageReference Include="Xilophor.StaticNetcodeLib" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
